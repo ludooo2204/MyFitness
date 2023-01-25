@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import GainageTimer from './GainageTimer';
 import WriteToDatabase from '../../Services/WriteToDatabase'
-import { Pressable, Text } from 'react-native';
-const Gainage = () => {
-  useEffect(() => {
+import { Pressable, Text, View, StyleSheet } from 'react-native';
+import { DataButton, GainageMainContainer } from './style';
 
-    WriteToDatabase();
-  }, [])
-  return <><GainageTimer />
-    <Pressable onPress={WriteToDatabase}><Text>write</Text></Pressable></>;
+const Gainage = ({ navigation }) => {
+
+
+
+  return <GainageMainContainer>
+
+    <DataButton color={'#b0dde8'} onPress={() => navigation.navigate('GainageData')}><Text>DATA</Text></DataButton>
+    <GainageTimer />
+
+
+
+  </GainageMainContainer>;
 };
 
 export default Gainage;
