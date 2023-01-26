@@ -24,6 +24,7 @@ const GainageTimer = () => {
 
   const user = { name: "Rei" }
   useEffect(() => {
+    // handleDeleteDatabase()
     dispatch(allActions.userActions.setUser(user))
   }, [])
   useEffect(() => {
@@ -57,12 +58,17 @@ const GainageTimer = () => {
     setElapsedTime(0);
   };
   const handleValidate = () => {
+    setModalVisible(true)
     WriteToDatabase(elapsedTime)
-    setStartTime(null);
-    setElapsedTime(0);
+
   };
   const handleDeleteDatabase = () => {
     deleteFromDatabase()
+  };
+  const handleCloseModal = () => {
+    setStartTime(null);
+    setElapsedTime(0);
+    setModalVisible(!modalVisible)
   };
   return (
 
@@ -117,16 +123,15 @@ const GainageTimer = () => {
         }}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+            <Text style={styles.modalText}>Bravo, tu as tenu {(Math.round(elapsedTime / 100) / 10).toFixed(1)} s !</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}>
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              onPress={handleCloseModal}>
+              <Text style={styles.textStyle}>ok</Text>
             </Pressable>
           </View>
         </View>
       </Modal>
-      <Button onPress={() => setModalVisible(true)} title="press" />
 
     </GainageTimerContainer >
   );
@@ -162,8 +167,9 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    borderRadius: 20,
-    padding: 10,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
     elevation: 2,
   },
   buttonOpen: {
@@ -179,6 +185,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
+    fontSize: 20,
     textAlign: 'center',
   },
 });

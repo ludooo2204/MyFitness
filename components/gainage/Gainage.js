@@ -11,6 +11,7 @@ const Gainage = ({ navigation }) => {
   return <GainageMainContainer>
 
     <DataButton color={'#b0dde8'} onPress={() => navigation.navigate('GainageData')}><Text>DATA</Text></DataButton>
+    <DataButton color={'#b0dde8'} onPress={() => navigation.navigate('GainageRecords')}><Text>RECORDS</Text></DataButton>
     <GainageTimer />
 
 

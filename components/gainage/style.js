@@ -48,7 +48,7 @@ export const DataButton = styled.Pressable`
 export const test = css`
 background-color: black;
 `
-export const GainageSessionContainer = styled.View`
+export const GainageSessionContainer = styled.Pressable`
 display: flex;
 justify-content: center;
 align-items: center;
