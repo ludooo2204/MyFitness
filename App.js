@@ -23,6 +23,9 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Gainage from './components/gainage/Gainage';
 import HomeScreen from './components/HomeScreen';
+import Squat from './components/squat/Squat';
+import SquatRecords from './components/squat/SquatRecords';
+import SquatData from './components/squat/SquatData';
 import GainageData from './components/gainage/GainageData';
 import GainageRecords from './components/gainage/GainageRecords';
 
@@ -52,6 +55,9 @@ const App = () => {
           <Stack.Screen name="Gainage" component={Gainage} />
           <Stack.Screen name="GainageData" component={GainageData} />
           <Stack.Screen name="GainageRecords" component={GainageRecords} />
+          <Stack.Screen name="Squat" component={Squat} />
+          <Stack.Screen name="SquatData" component={SquatData} />
+          <Stack.Screen name="SquatRecords" component={SquatRecords} />
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>

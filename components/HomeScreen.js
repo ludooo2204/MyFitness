@@ -14,6 +14,10 @@ const HomeScreen = ({ navigation }) => {
                 title="Séance de gainage"
                 onPress={() => navigation.navigate('Gainage')}
             />
+            <Button
+                title="Séance de squat"
+                onPress={() => navigation.navigate('Squat')}
+            />
         </View>
     );
 }

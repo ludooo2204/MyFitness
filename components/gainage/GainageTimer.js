@@ -3,8 +3,7 @@ import { Button, Pressable, Modal, Text, View, Dimensions, StyleSheet, Alert } f
 import { useDispatch, useSelector } from 'react-redux';
 import allActions from '../../actions';
 import deleteFromDatabase from '../../Services/deleteTable';
-import ReadFromDatabase from '../../Services/ReadFromDatabase';
-import WriteToDatabase from '../../Services/WriteToDatabase';
+import { WriteGainageToDatabase } from '../../Services/WriteToDatabase';
 import { css } from '@emotion/native'
 
 import { button, Container, CustomButton, Description, GainageContainer, GainageTimerContainer, PressableContainer, StartTimerButton, test, TimerButton, TimerText } from './style';
@@ -59,7 +58,7 @@ const GainageTimer = () => {
   };
   const handleValidate = () => {
     setModalVisible(true)
-    WriteToDatabase(elapsedTime)
+    WriteGainageToDatabase(elapsedTime)
 
   };
   const handleDeleteDatabase = () => {

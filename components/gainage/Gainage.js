@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import GainageTimer from './GainageTimer';
-import WriteToDatabase from '../../Services/WriteToDatabase'
 import { Pressable, Text, View, StyleSheet } from 'react-native';
 import { DataButton, GainageMainContainer } from './style';
 

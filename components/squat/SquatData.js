@@ -1,34 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { ScrollView, StyleSheet, Text, View, Modal, Pressable } from 'react-native'
-import { ReadGainageFromDatabase } from '../../Services/ReadFromDatabase';
-import { GainageSessionContainer, GainageSessionText } from './style';
+import { ReadSquatFromDatabase } from '../../Services/ReadFromDatabase';
+import { GainageSessionContainer, GainageSessionText } from '../gainage/style';
 import { BarChart, LineChart } from 'react-native-charts-wrapper';
-import { deleteSpecificElementTableGainage } from '../../Services/deleteSpecificElementTable';
-const GainageData = ({ navigation }) => {
+import { deleteSpecificElementTableSquat } from '../../Services/deleteSpecificElementTable';
+const SquatData = ({ navigation }) => {
     const [data, setData] = useState(null)
     const [modalVisible, setModalVisible] = useState(false);
     const [selectedSession, setSelectedSession] = useState(null);
 
     useEffect(() => {
-        ReadGainageFromDatabase(e => {
+        ReadSquatFromDatabase(e => {
             setData(e)
         });
     }, [])
     let dataForGraph2;
-    let dataForGraph = [
-        { x: 1609459200000, y: 5 },
-        { x: 1609545600000, y: 7 },
-        { x: 1609632000000, y: 9 },
-        { x: 1609718400000, y: 8 },
-        { x: 1609804800000, y: 6 }
-    ]
+
     if (data) {
         console.log('data');
         console.log(data)
-        dataForGraph2 = data.map(d => { return { x: new Date(d.date).getTime() - new Date(data[0].date).getTime(), y: d.duration / 1000 } })
+        dataForGraph2 = data.map(d => { return { x: new Date(d.date).getTime() - new Date(data[0].date).getTime(), y: d.count } })
 
-        console.log('dataForGraph');
-        console.log(dataForGraph)
         console.log('dataForGraph2');
         console.log(dataForGraph2)
 
@@ -45,8 +37,8 @@ const GainageData = ({ navigation }) => {
         console.log('selectedSession');
         console.log(selectedSession)
         setModalVisible(false)
-        deleteSpecificElementTableGainage(selectedSession)
-        ReadGainageFromDatabase(e => {
+        deleteSpecificElementTableSquat(selectedSession)
+        ReadSquatFromDatabase(e => {
             setData(e)
         });
     }
@@ -83,7 +75,8 @@ const GainageData = ({ navigation }) => {
             </View>
         </Modal>
         <View style={{ flex: 1 }}><Text>graph</Text>
-            {data && data.length > 0 && <BarChart style={styles.chart}
+            {data && data.length > 0 && <LineChart style={styles.chart}
+
                 yAxis={{ axisMaximum: 10 }}
                 onSelect={e => {
 
@@ -101,7 +94,21 @@ const GainageData = ({ navigation }) => {
                     timeUnit: 'MILLISECONDS',
                 }}
 
-                data={{ dataSets: [{ label: "demo", values: dataForGraph2 }], config: { barWidth: 60000 }, }}
+                data={{
+                    dataSets: [{
+                        label: "demo", values: dataForGraph2, config: {
+                            lineWidth: 5,
+                            drawCircles: false,
+                            drawCubicIntensity: 0.3,
+                            drawCubic: true,
+                            drawHighlightIndicators: false,
+                            color: 1,
+                            drawFilled: true,
+                            fillColor: 1,
+                            fillAlpha: 90
+                        }
+                    }]
+                }}
             />}</View>
         <ScrollView style={{ flex: 1 }}>{data && data.map((e, i) => {
             return <GainageSessionContainer style={{
@@ -112,13 +119,13 @@ const GainageData = ({ navigation }) => {
                 elevation: 4,
                 backgroundColor: 'white'
             }} key={i} onPress={() => handlePressData(e)} >
-                <GainageSessionText  >durée de {e.duration / 1000} s   --  {new Date(e.date).toLocaleString('fr-FR')}</GainageSessionText>
+                <GainageSessionText  >{e.count} squats   --  {new Date(e.date).toLocaleString('fr-FR')}</GainageSessionText>
             </GainageSessionContainer>
         })}
         </ScrollView></View>
     )
 }
-export default GainageData;
+export default SquatData;
 
 const styles = StyleSheet.create({
     container: {

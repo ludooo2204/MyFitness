@@ -1,5 +1,5 @@
 import { openDatabase } from 'react-native-sqlite-storage';
-export default WriteToDatabase = (duration) => {
+export const WriteGainageToDatabase = (duration) => {
     console.log("write")
     var db = openDatabase({ name: 'FitnessDatabase.db' });
 
@@ -10,6 +10,22 @@ export default WriteToDatabase = (duration) => {
             [new Date().toISOString(), duration, 'ludo'],
             (success, tt) => console.log('Success inserting row in gainage database'),
             (error) => console.log('Error inserting row in gainage database: ', error)
+        );
+    });
+
+
+}
+export const WriteSquatToDatabase = (count) => {
+    console.log("write squat")
+    var db = openDatabase({ name: 'FitnessDatabase.db' });
+
+
+    db.transaction((tx) => {
+        tx.executeSql(
+            'INSERT INTO session_squat (date,count, user) VALUES (?, ? ,?)',
+            [new Date().toISOString(), count, 'ludo'],
+            (success, tt) => console.log('Success inserting row in squat database'),
+            (error) => console.log('Error inserting row in squat database: ', error)
         );
     });
 

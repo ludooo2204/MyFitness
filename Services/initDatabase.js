@@ -54,6 +54,17 @@ export default initDatabase = () => {
                 console.log(`Error creating table session_gainage: ${error}`);
             }
     });
+    db.transaction(tx => {
+        tx.executeSql(
+            'CREATE TABLE IF NOT EXISTS session_squat (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, count INTEGER, user TEXT);'
+        ), [],
+            (tx, results) => {
+                console.log('Table session_squat created successfully');
+            },
+            (tx, error) => {
+                console.log(`Error creating table session_squat: ${error}`);
+            }
+    });
 
     // Close the database
     // db.close((success) => console.log('Success closing database'), (error) => console.log('Error closing database: ', error));
