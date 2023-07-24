@@ -1,9 +1,9 @@
 import React, { Component, useState } from 'react'
 import { Pressable, StyleSheet, Text, Modal, TextInput, View } from 'react-native'
-import { WriteSquatToDatabase } from '../../Services/WriteToDatabase';
+import { WritePumpToDatabase, WriteSquatToDatabase } from '../../Services/WriteToDatabase';
 import { button } from '../gainage/style';
 
-const SquatCounter = () => {
+const PumpCounter = () => {
     const [number, onChangeNumber] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
 
@@ -11,7 +11,7 @@ const SquatCounter = () => {
     const handleValidate = () => {
         setModalVisible(true)
 
-        WriteSquatToDatabase(number)
+        WritePumpToDatabase(number)
 
     };
     const handleCloseModal = () => {
@@ -32,7 +32,7 @@ const SquatCounter = () => {
                 }}>
                 <View style={styles.centeredView}>
                     <View style={styles.modalView}>
-                        <Text style={styles.modalText}>Bravo, tes {number} squats ont bien été enregistrés !</Text>
+                        <Text style={styles.modalText}>Bravo, tes {number} pompes ont bien été enregistrés !</Text>
 
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
@@ -42,7 +42,7 @@ const SquatCounter = () => {
                     </View>
                 </View>
             </Modal>
-            <Text style={styles.text}> Combien de squats pour cette séance ? </Text>
+            <Text style={styles.text}> Combien de pompes pour cette séance ? </Text>
 
             <TextInput
                 style={styles.input}
@@ -124,4 +124,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default SquatCounter
+export default PumpCounter

@@ -19,4 +19,24 @@ export const deleteSpecificElementTableSquat = (element) => {
         );
     });
 }
+export const deleteSpecificElementTablePump = (element) => {
+    console.log("delete element")
+    console.log(element)
+    var db = openDatabase({ name: 'FitnessDatabase.db' });
+    db.transaction(tx => {
+        tx.executeSql(
+            'DELETE FROM session_pump WHERE id= ' + element.id
+        );
+    });
+}
+export const deleteSpecificElementTablePoids = (element) => {
+    console.log("delete element")
+    console.log(element)
+    var db = openDatabase({ name: 'FitnessDatabase.db' });
+    db.transaction(tx => {
+        tx.executeSql(
+            'DELETE FROM session_poids WHERE id= ' + element.id
+        );
+    });
+}
 

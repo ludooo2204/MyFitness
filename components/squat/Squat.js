@@ -5,7 +5,7 @@ import { DataButton } from '../gainage/style'
 import SquatCounter from './SquatCounter'
 
 const Squat = ({ navigation }) => {
-    useEffect(() => ReadSquatFromDatabase(data => console.log(data)), [])
+    useEffect(() => ReadSquatFromDatabase(data => { console.log("squats Data =", data) }), [])
     return (
         <View style={styles.squatContainer}>
             <DataButton color={'#b0dde8'} onPress={() => navigation.navigate('SquatData')}><Text>DATA</Text></DataButton>

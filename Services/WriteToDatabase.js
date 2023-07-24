@@ -31,6 +31,38 @@ export const WriteSquatToDatabase = (count) => {
 
 
 }
+export const WritePumpToDatabase = (count) => {
+    console.log("write pumps")
+    var db = openDatabase({ name: 'FitnessDatabase.db' });
+
+
+    db.transaction((tx) => {
+        tx.executeSql(
+            'INSERT INTO session_pump (date,count, user) VALUES (?, ? ,?)',
+            [new Date().toISOString(), count, 'ludo'],
+            (success, tt) => console.log('Success inserting row in pump database'),
+            (error) => console.log('Error inserting row in pump database: ', error)
+        );
+    });
+
+
+}
+export const WritePoidsToDatabase = (count) => {
+    console.log("write poids")
+    var db = openDatabase({ name: 'FitnessDatabase.db' });
+
+
+    db.transaction((tx) => {
+        tx.executeSql(
+            'INSERT INTO session_poids (date,count, user) VALUES (?, ? ,?)',
+            [new Date().toISOString(), count, 'ludo'],
+            (success, tt) => console.log('Success inserting row in poids database'),
+            (error) => console.log('Error inserting row in poids database: ', error)
+        );
+    });
+
+
+}
 
 /*Voici un exemple de comment vous pourriez modifier la fonction WriteToDatabase pour accepter des paramètres pour le nom de la table, les valeurs de colonne et les noms de colonne :
 $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$

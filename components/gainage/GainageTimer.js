@@ -7,8 +7,6 @@ import { WriteGainageToDatabase } from '../../Services/WriteToDatabase';
 import { css } from '@emotion/native'
 
 import { button, Container, CustomButton, Description, GainageContainer, GainageTimerContainer, PressableContainer, StartTimerButton, test, TimerButton, TimerText } from './style';
-console.log('test');
-console.log(test)
 const { width } = Dimensions.get('window')
 const { height } = Dimensions.get('window')
 const GainageTimer = () => {
@@ -74,17 +72,9 @@ const GainageTimer = () => {
     <GainageTimerContainer
       height={height / 2}
     >
-      {/* <Description style={{ fontSize: 45, fontWeight: 'bold' }}>
-        Emotion Primitives
-      </Description> */}
-      {/* <View style={test}><Text>TEST</Text></View> */}
-      {/* <Button title="add to store" onPress={() => addStore(elapsedTime)} />
-      <Button title="lire data" onPress={ReadFromDatabase} />
-      <Button title="effacer datas" onPress={handleDeleteDatabase} />
-      <Button title="increment" onPress={() => dispatch(allActions.counterActions.increment())} /> */}
+
 
       <TimerText testID='timer'>{elapsedTime != 0 ? `${(Math.round(elapsedTime / 100) / 10).toFixed(1)} s` : ""}</TimerText>
-      {/* <Text>{counter}</Text> */}
       {!isRunning && elapsedTime == 0 && <TimerButton
 
         diametre={width / 4}
