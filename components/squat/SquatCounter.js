@@ -2,6 +2,8 @@ import React, { Component, useState } from 'react'
 import { Pressable, StyleSheet, Text, Modal, TextInput, View } from 'react-native'
 import { WriteSquatToDatabase } from '../../Services/WriteToDatabase';
 import { button } from '../gainage/style';
+import { ReadSquatFromDatabase } from '../../Services/ReadFromDatabase';
+import { checkCounts } from '../../Services/successFunctions'
 
 const SquatCounter = () => {
     const [number, onChangeNumber] = useState('');
@@ -12,10 +14,19 @@ const SquatCounter = () => {
         setModalVisible(true)
 
         WriteSquatToDatabase(number)
+        console.log('number');
+        console.log(number)
 
     };
     const handleCloseModal = () => {
         onChangeNumber(0)
+        ReadSquatFromDatabase((data => {
+            console.log("kuku", data)
+            checkCounts(data);
+
+            console.log(JSON.stringify(data))
+        }));
+
         setModalVisible(!modalVisible)
     };
     return (
@@ -58,6 +69,7 @@ const SquatCounter = () => {
         </View>
     )
 }
+
 
 
 const styles = StyleSheet.create({

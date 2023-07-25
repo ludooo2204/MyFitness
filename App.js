@@ -33,6 +33,7 @@ import PumpData from './components/pump/PumpData';
 import PumpRecords from './components/pump/PumpRecords';
 import Poids from './components/poids/Poids';
 import PoidsData from './components/poids/PoidsData';
+import Succes from './components/Succes';
 
 
 // const store = configureStore(
@@ -70,6 +71,7 @@ const App = () => {
         <Stack.Screen name="PumpRecords" component={PumpRecords} />
         <Stack.Screen name="Poids" component={Poids} />
         <Stack.Screen name="PoidsData" component={PoidsData} />
+        <Stack.Screen name="Succès" component={Succes} />
       </Stack.Navigator>
       {/* </Provider> */}
     </NavigationContainer>

@@ -60,6 +60,16 @@ const HomeScreen = ({ navigation }) => {
                 >Suivi du poids</Text>
 
             </Pressable>
+            <Pressable
+                style={styles.buttonPoids}
+                onPress={() => navigation.navigate('Succès')}
+            >
+                <Text
+                    style={styles.textButton}
+
+                >Succès</Text>
+
+            </Pressable>
         </View>
     );
 }
